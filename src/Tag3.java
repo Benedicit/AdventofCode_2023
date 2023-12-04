@@ -4,7 +4,7 @@ import java.util.*;
 public class Tag3 {
     public static void main(String[] args) {
         System.out.println(gearRatio2());
-
+        char s = '3';
     }
 
     public static boolean isSymbol(Character c) {
@@ -273,7 +273,7 @@ public class Tag3 {
         return result;
     }
     public static boolean isStar(char c) {
-        return c=='*';
+        return c =='*';
     }
 }
 
