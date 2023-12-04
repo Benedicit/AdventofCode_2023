@@ -19,6 +19,7 @@ public class Tag4 {
         String leftSide;
         String[] strLineNumbers;
         String rightSide;
+        int currentLine = 1;
         while (true) {
             try {
                 if ((strLine = br.readLine()) == null) break;
@@ -28,7 +29,7 @@ public class Tag4 {
           strLineNumbers = strLine.split("\\|");
             leftSide = strLineNumbers[0].substring(10,strLineNumbers[0].length()-1);
             rightSide = strLineNumbers[1].substring(1);
-            int currentLine = 1;
+
             int index =0;
             List<String> left = new ArrayList<>();
             List<String> right = new ArrayList<>();
@@ -43,14 +44,15 @@ public class Tag4 {
                 right.add(rightSide.substring(index,index+2));
                 index +=3;
             }
-            for (int i = 0; i < left.size(); i++) {
-                if (right.contains(left.get(i))) {
+            for (String s : left) {
+                if (right.contains(s)) {
                     length++;
                 }
             }
             if (length>0) {
                 linePoints = (int) Math.pow(2, length-1);
             }
+            currentLine++;
             result += linePoints;
         }
         return result;
@@ -94,8 +96,8 @@ public class Tag4 {
                 right.add(rightSide.substring(index, index + 2));
                 index += 3;
             }
-            for (int i = 0; i < left.size(); i++) {
-                if (right.contains(left.get(i))) {
+            for (String s : left) {
+                if (right.contains(s)) {
                     length++;
                 }
             }
