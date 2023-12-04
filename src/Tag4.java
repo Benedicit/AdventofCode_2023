@@ -9,9 +9,6 @@ public class Tag4 {
         File file = new File("/Users/benedikt/Documents/Programmieren/AdventOfCode/Inputs/2023/Tag_4.txt");
         BufferedReader br;
         int result = 0;
-        Map<Character, Integer> map = Map.of('0', 0, '1', 1,
-                '2', 2, '3', 3, '4', 4, '5', 5,
-                '6', 6, '7', 7, '8', 8, '9', 9);
         try {
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
@@ -19,9 +16,9 @@ public class Tag4 {
         }
 
         String strLine;
-        String leftSide = "";
-        String[] strLineNumbers = new String[0];
-        String rightSide = "";
+        String leftSide;
+        String[] strLineNumbers;
+        String rightSide;
         while (true) {
             try {
                 if ((strLine = br.readLine()) == null) break;
@@ -62,9 +59,6 @@ public class Tag4 {
         File file = new File("/Users/benedikt/Documents/Programmieren/AdventOfCode/Inputs/2023/Tag_4.txt");
         BufferedReader br;
         int result = 0;
-        Map<Character, Integer> map = Map.of('0', 0, '1', 1,
-                '2', 2, '3', 3, '4', 4, '5', 5,
-                '6', 6, '7', 7, '8', 8, '9', 9);
         try {
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
