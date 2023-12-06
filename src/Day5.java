@@ -1,8 +1,7 @@
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class Tag5 {
+public class Day5 {
     public static void main(String[] args) {
         System.out.println(day5_Part2());
     }

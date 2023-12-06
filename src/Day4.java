@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Tag4 {
+public class Day4 {
     public static void main(String[] args) {
         System.out.println(day4_Part2());
     }

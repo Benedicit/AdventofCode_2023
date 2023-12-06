@@ -1,9 +1,7 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class Tag1 {
+public class Day1 {
     public static void main(String[] args) {
 
         System.out.println(calculate());

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Tag3 {
+public class Day3 {
     public static void main(String[] args) {
         System.out.println(gearRatio1());
         System.out.println(gearRatio2());
