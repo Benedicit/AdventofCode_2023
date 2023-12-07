@@ -1,3 +1,12 @@
 /src/FailedDay3Part1.java
 /src/FailedDay5Part2.java
 /.idea/uiDesigner.xml
+/.gradle/
+/build/
+/out/
+/build.gradle
+/gradlew
+/gradlew.bat
+/settings.gradle
+/gradle/
+/.idea/

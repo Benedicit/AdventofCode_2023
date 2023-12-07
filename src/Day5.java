@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Day5 {
     public static void main(String[] args) {
-        System.out.println(day5_Part2());
+        System.out.println(day5_Part1());
     }
 
     public static long day5_Part1() {
