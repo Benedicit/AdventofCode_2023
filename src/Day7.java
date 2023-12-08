@@ -22,7 +22,8 @@ public class Day7 {
         map.put('K',13);
         map.put('A',14);
         String strLine;
-        List<Long> valueHand = new ArrayList<>();
+
+
         List<long[]> allSame = new ArrayList<>();
         List<long[]> four = new ArrayList<>();
         List<long[]> fullHouse = new ArrayList<>();
@@ -30,6 +31,7 @@ public class Day7 {
         List<long[]> twoDoubles = new ArrayList<>();
         List<long[]> doubles = new ArrayList<>();
         List<long[]> card = new ArrayList<>();
+
         while (true) {
             try {
                 if ((strLine = br.readLine()) == null) break;
@@ -97,10 +99,8 @@ public class Day7 {
                     card.add(new long[]{value,bet});
                 }
             }
-            valueHand.add(value);
+
         }
-
-
 
 
         int rank = 1;
@@ -149,7 +149,7 @@ public class Day7 {
         map.put('K',12);
         map.put('A',13);
         String strLine;
-        List<Long> valueHand = new ArrayList<>();
+
         List<long[]> allSame = new ArrayList<>();
         List<long[]> four = new ArrayList<>();
         List<long[]> fullHouse = new ArrayList<>();
@@ -279,7 +279,7 @@ public class Day7 {
                     card.add(new long[]{value,bet});
                 }
             }
-            valueHand.add(value);
+
         }
         int rank = 1;
         for (List<long[]> longs : Arrays.asList(card, doubles, twoDoubles, three, fullHouse, four, allSame)) {
