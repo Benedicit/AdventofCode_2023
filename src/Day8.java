@@ -20,12 +20,12 @@ public class Day8 {
         String strLine;
 
         int currentLine = 1;
-        String firstWord = "";
+        String firstWord;
         String pathFinding = "";
 
         Map<String,String> wordToLeft = new HashMap<>();
         Map<String,String> wordToRight = new HashMap<>();
-        String currentWord = "";
+        String currentWord;
         while (true) {
             try {
                 if ((strLine = br.readLine()) == null) break;
@@ -126,9 +126,7 @@ public class Day8 {
             found = false;
             while (!found) {
                 int i = 0;
-                if (found) {
-                    break;
-                }
+
                 while (i < pathFinding.length()) {
                     char whereTo = pathFinding.charAt(i);
                     if (whereTo == 'L') {
