@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Day9 {
+
+
     public static void main(String[] args) {
         System.out.println(day9_Part2());
     }
@@ -71,6 +73,7 @@ public class Day9 {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
             List<Long> numbers = new ArrayList<>();
 
             String[] nums = strLine.split(" ");
