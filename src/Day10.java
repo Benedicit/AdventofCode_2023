@@ -196,16 +196,19 @@ public class Day10 {
         boolean fromRight = false;
         boolean fromLeft = true;
         boolean fromTop = false;
+        //boolean fromLeft = false;
+        //boolean fromTop = true;
+
+
         boolean fromBottom = false;
         int n = 1;
 
 
 
         char currentChar = grid[startLine][++startIndex];
-
+        //char currentChar = grid[++startLine][startIndex];
         int area =0;
         while (currentChar != 'S') {
-            loop.add(new int[]{startLine,startIndex});
             checkIfOnLoop[startLine][startIndex] = true;
             switch (currentChar) {
                 case '|' -> {
@@ -234,7 +237,7 @@ public class Day10 {
                     }
                 }
                 case 'L' -> {
-
+                    loop.add(new int[]{startLine,startIndex});
                     fromRight = false;
                     fromBottom = false;
                     if (fromTop) {
@@ -249,7 +252,7 @@ public class Day10 {
 
                 }
                 case 'J' -> {
-
+                    loop.add(new int[]{startLine,startIndex});
                     fromLeft = false;
                     fromBottom = false;
                     if (fromTop) {
@@ -263,7 +266,7 @@ public class Day10 {
                     }
                 }
                 case '7' -> {
-
+                    loop.add(new int[]{startLine,startIndex});
                     fromRight = false;
                     fromBottom = false;
                     if (fromLeft) {
@@ -277,6 +280,7 @@ public class Day10 {
                     }
                 }
                 case 'F' -> {
+                    loop.add(new int[]{startLine,startIndex});
                     fromLeft = false;
                     fromBottom = false;
 
@@ -294,17 +298,28 @@ public class Day10 {
             }
 
             currentChar = grid[startLine][startIndex];
-            result++;
+            //result++;
         }
         //loop.remove(loop.size()-1);
-        for (int i = 1; i < loop.size()-1; i++) {
-            area += loop.get(i)[0] * (loop.get(i+1)[1] - loop.get(i-1)[1]);
+        for (int i=0;i<grid.length;i++) {
+            boolean isInside = false;
+            int temp=0;
+            for (int j = 0; j < grid[0].length; j++) {
+                currentChar= grid[i][j];
+                if((currentChar=='F' || currentChar== '7' || currentChar== '|') && checkIfOnLoop[i][j]) {
+                    isInside = !isInside;
+                    result += temp;
+                    temp =0;
+                }
+                if(isInside && !checkIfOnLoop[i][j]) {
+                    temp++;
+                }
+            }
+            if(isInside) {
+                temp=0;
+            }
+
         }
-        area += loop.get(0)[0] *(loop.get(1)[1]-loop.get(loop.size()-1)[1]);
-        area += loop.get(loop.size()-1)[0] * (loop.get(0)[1]-loop.get(loop.size()-2)[1]);
-        area /= 2;
-       // area *= -1;
-        result = area - day10_Part1();
         return result;
     }
 
