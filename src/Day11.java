@@ -17,9 +17,7 @@ public class Day11 {
         String strLine;
 
         int currentLine = 0;
-        int startLine = 0;
-        int startIndex = 0;
-        int n =1;
+
         List<String> lines = new ArrayList<>();
         while (true) {
             try {
@@ -27,13 +25,11 @@ public class Day11 {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            String counter = strLine;
-
             lines.add(strLine);
 
             currentLine++;
         }
-        char[][] grid = new char[lines.size()][];
+
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
             if(line.replace(".", "").isEmpty()) {
@@ -57,34 +53,7 @@ public class Day11 {
                 i++;
             }
         }
-        /*
-        for (int i = 1; i < n; i++) {
-            int indexLine = 0;
-            int indexChar1 = lines.get(indexLine).indexOf('#');
-
-            while (indexChar1 == -1) {
-                indexLine++;
-                indexChar1 = lines.get(indexLine).indexOf('#');
-            }
-            String test = lines.remove(indexLine).replaceFirst("#",".");
-            lines.add(indexLine,test);
-            List<String> clone = new ArrayList<>(lines);
-            for (int j = i+1; j < n; j++) {
-                int indexSecondLine = i;
-                int indexChar2 = clone.get(indexSecondLine).indexOf('#');
-                while (indexChar2 == -1) {
-                    indexSecondLine++;
-                    indexChar2 = clone.get(indexSecondLine).indexOf('#');
-                }
-                test = clone.remove(indexSecondLine).replaceFirst("#",".");
-                clone.add(indexSecondLine,test);
-                result += indexSecondLine-indexLine + Math.abs(indexChar2-indexChar1);
-            }
-
-        }
-
-         */
-        n=0;
+        int n=0;
         long result = 0;
         Map<Integer,int[]> galaxies = new HashMap<>();
         for (int i = 0; i < lines.size(); i++) {
@@ -105,6 +74,8 @@ public class Day11 {
 
         return result;
     }
+
+    //Part 2 works for part1 too if you exchange the 10^6 with 2
     public static long day11_Part2() {
         File file = new File("/Users/benedikt/Documents/Programmieren/AdventOfCode/Inputs/2023/Tag_11.txt");
         BufferedReader br;
@@ -117,9 +88,7 @@ public class Day11 {
         String strLine;
 
         int currentLine = 0;
-        int startLine = 0;
-        int startIndex = 0;
-        int n =1;
+
         List<String> lines = new ArrayList<>();
         while (true) {
             try {
@@ -127,13 +96,12 @@ public class Day11 {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            String counter = strLine;
 
             lines.add(strLine);
 
             currentLine++;
         }
-        char[][] grid = new char[lines.size()][];
+
 
 
         for (int i = 0; i < lines.get(0).length(); i++) {
@@ -145,7 +113,6 @@ public class Day11 {
             if(sb.toString().replace(".", "").isEmpty()) {
                 for (int j=0; j<lines.size(); j++) {
                     StringBuilder newLine = new StringBuilder(lines.remove(j));
-                    //newLine.deleteCharAt(i);
                     newLine.insert(i,"|");
                     lines.add(j,newLine.toString());
                 }
@@ -161,7 +128,7 @@ public class Day11 {
                 i++;
             }
         }
-        n=0;
+        int n=0;
         long result = 0;
         int offset = 0;
         Map<Integer, long[]> galaxies = new HashMap<>();

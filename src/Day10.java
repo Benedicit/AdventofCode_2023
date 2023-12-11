@@ -187,7 +187,7 @@ public class Day10 {
         for (int i = 0; i < grid.length; i++) {
             grid[i] = lines.get(i);
         }
-        lines = null;
+
         boolean[][] checkIfOnLoop = new boolean[grid.length][grid[0].length];
         char S = grid[startLine][startIndex];
         List<int[]> loop = new ArrayList<>();
@@ -196,6 +196,7 @@ public class Day10 {
         boolean fromRight = false;
         boolean fromLeft = true;
         boolean fromTop = false;
+        //For example 3 in part 2
         //boolean fromLeft = false;
         //boolean fromTop = true;
 
@@ -298,9 +299,9 @@ public class Day10 {
             }
 
             currentChar = grid[startLine][startIndex];
-            //result++;
+
         }
-        //loop.remove(loop.size()-1);
+
         for (int i=0;i<grid.length;i++) {
             boolean isInside = false;
             int temp=0;
@@ -314,9 +315,6 @@ public class Day10 {
                 if(isInside && !checkIfOnLoop[i][j]) {
                     temp++;
                 }
-            }
-            if(isInside) {
-                temp=0;
             }
 
         }
