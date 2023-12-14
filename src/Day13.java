@@ -69,6 +69,7 @@ public class Day13 {
             if(equal) {
                 result += 100L * index;
                 done = true;
+                break;
             }
 
         }
@@ -109,6 +110,7 @@ public class Day13 {
                     }
                     if (equal) {
                         result += index;
+                        break;
                     }
                 }
             }
@@ -168,51 +170,159 @@ public class Day13 {
         boolean lineWithOneWrong = false;
         for (int i = indexOfSmudgedLine; i >= 0 ; i--) {
             String leftSide = lines.get(i);
-            String temp = compare(smudgedLine,leftSide);
-            if(!temp.equals(smudgedLine)) {
-                lineWithOneWrong = true;
-                smudgedLine = temp;
-                break;
-            }
+           boolean check = compare(smudgedLine,leftSide,lines);
+           if(check) {
+               break;
+           }
         }
         if(!lineWithOneWrong) {
             for (int i = indexOfSmudgedLine; i <lines.size() ; i++) {
                 String rightSide = lines.get(i);
-                String temp = compare(smudgedLine,rightSide);
-                if(!temp.equals(smudgedLine)) {
-                    smudgedLine = temp;
+                boolean check = compare(smudgedLine,rightSide,lines);
+                if(check) {
                     break;
                 }
             }
         }
-        lines.remove(indexOfSmudgedLine);
-        lines.add(indexOfSmudgedLine,smudgedLine);
 
-        result += helper(lines);
+        result += helper2(lines);
         return result;
     }
 
-    public static String compare(String s1,String s2) {
-        int matchCount =0;
+    public static boolean compare(String s1,String s2,List<String> lines ) {
+        int matchCount = 0;
         int indexOfWrongChar = 0;
+        int indexS1 = lines.indexOf(s1);
+        int indexS2 = lines.indexOf(s2);
         for (int i = 0; i < s1.length(); i++) {
-            if(s1.charAt(i) == s2.charAt(i)) {
+            if (s1.charAt(i) == s2.charAt(i)) {
                 matchCount++;
             } else {
                 indexOfWrongChar = i;
             }
         }
-        if(s1.length()-matchCount == 1) {
-            StringBuilder sb = new StringBuilder(s1);
-            if(s1.charAt(indexOfWrongChar) == '.') {
-               sb.setCharAt(indexOfWrongChar,'#');
-
-
-            } else {
-                sb.setCharAt(indexOfWrongChar,'.');
+        if (s1.length() - matchCount == 1) {
+            StringBuilder sb1 = new StringBuilder(s1);
+            StringBuilder sb2 = new StringBuilder(s2);
+            int index = lines.indexOf(s2);
+            boolean hasPair = false;
+            for (int i = index - 1; i >= 0; i--) {
+                String leftSide = lines.get(i);
+                if (s2.equals(leftSide)) {
+                    hasPair = true;
+                    break;
+                }
             }
-            s1 = sb.toString();
+            if (!hasPair) {
+                for (int i = index + 1; i < lines.size(); i++) {
+                    String rightSide = lines.get(i);
+                    if (s2.equals(rightSide)) {
+                        hasPair = true;
+                        break;
+                    }
+                }
+            }
+
+
+            if (!hasPair) {
+                if (s1.charAt(indexOfWrongChar) == '.') {
+                    sb1.setCharAt(indexOfWrongChar, '#');
+                } else {
+                    sb1.setCharAt(indexOfWrongChar, '.');
+                }
+                s1 = sb1.toString();
+                lines.remove(indexS1);
+                lines.add(indexS1,s1);
+            } else {
+                if (s2.charAt(indexOfWrongChar) == '.') {
+                    sb2.setCharAt(indexOfWrongChar, '#');
+                } else {
+                    sb2.setCharAt(indexOfWrongChar, '.');
+                }
+                s2 = sb2.toString();
+                lines.remove(indexS2);
+                lines.add(indexS2,s2);
+
+            }
+            return true;
+        } else {
+            return false;
         }
-        return s1;
+    }
+
+    public static long helper2(List<String> lines) {
+        long result = 0;
+        List<Integer> allHorizontal = new ArrayList<>();
+        for (int i = 0; i < lines.size() - 1; i++) {
+            String first = lines.get(i);
+            String second = lines.get(i + 1);
+            if (first.equals(second)) {
+                allHorizontal.add(i+1);
+            }
+        }
+        boolean done = false;
+        for (Integer index: allHorizontal) {
+            int left = index-2;
+            int right = index+1;
+            boolean equal = true;
+            while(left>=0 && right<lines.size()) {
+                String leftSide = lines.get(left);
+                String rightSide = lines.get(right);
+                if(!leftSide.equals(rightSide)) {
+                    equal = false;
+                    break;
+                }
+                left--;
+                right++;
+            }
+            if(equal) {
+                result += 100L * index;
+                done = true;
+                break;
+            }
+
+        }
+
+        List<String> columns = new ArrayList<>();
+
+        for (int i = 0; i < lines.get(0).length(); i++) {
+            StringBuilder sb = new StringBuilder();
+
+            for (String s : lines) {
+                sb.append(s.charAt(i));
+            }
+            columns.add(sb.toString());
+        }
+
+        List<Integer> allVertical = new ArrayList<>();
+        for (int i = 0; i < columns.size() - 1; i++) {
+            String first = columns.get(i);
+            String second = columns.get(i + 1);
+            if (first.equals(second)) {
+                allVertical.add(i + 1);
+            }
+        }
+        if(!done) {
+            for (Integer index : allVertical) {
+                int left = index - 2;
+                int right = index + 1;
+                boolean equal = true;
+                while (left >= 0 && right < columns.size()) {
+                    String leftSide = columns.get(left);
+                    String rightSide = columns.get(right);
+                    if (!leftSide.equals(rightSide)) {
+                        equal = false;
+                        break;
+                    }
+                    left--;
+                    right++;
+                }
+                if (equal) {
+                    result += index;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 }
