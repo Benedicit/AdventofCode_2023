@@ -117,7 +117,7 @@ public class Day14 {
         Map<Integer,List<String>> memo = new HashMap<>();
         int position =0;
         for (int i = 0; i < 1e9; i++) {
-            if(i>=10000) {
+            if(i>=1000) {
                 memo.put(i, columns);
             }
             List<String> temp = new ArrayList<>();
@@ -194,8 +194,8 @@ public class Day14 {
             }
         }
 
-        int howOftenLoop = (int) ((1e9 -10000) % memo.size());
-        columns = memo.get(10000+howOftenLoop);
+        int howOftenLoop = (int) ((1e9 -1000) % memo.size());
+        columns = memo.get(1000+howOftenLoop);
 
         for (String s : columns) {
             for (int i = 0; i < s.length(); i++) {
