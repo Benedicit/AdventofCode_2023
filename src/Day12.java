@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public class Day12 {
     public static void main(String[] args) {
-        System.out.println(day11_Part1());
+        System.out.println(day12_Part1());
     }
-    public static long day11_Part1() {
+    public static long day12_Part1() {
         File file = new File("/Users/benedikt/Documents/Programmieren/AdventOfCode/Inputs/2023/Tag_12.txt");
         BufferedReader br;
         long result = 0;
@@ -163,7 +163,7 @@ public class Day12 {
         return replace;
     }
 
-    public static long day11_Part2() {
+    public static long day12_Part2() {
         File file = new File("/Users/benedikt/Documents/Programmieren/AdventOfCode/Inputs/2023/Tag_12.txt");
         BufferedReader br;
         long result = 0;
